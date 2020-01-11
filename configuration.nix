@@ -12,6 +12,11 @@
     cleanTmpDir = true;
   };
 
+  # Packages
+  environment.systemPackages = with pkgs; [
+     wget git
+  ];
+
   programs.fish.enable = true;
   systemd.services = {
       dear = import ./services/dear.nix { inherit pkgs; };
