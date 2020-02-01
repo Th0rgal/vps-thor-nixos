@@ -36,6 +36,7 @@
             "todo.oraxen.com" = vhost { root = "/var/www/oraxen/todo"; };
             "goblinmc.fr" = vhost { root = "/var/www/goblinmc"; 
                 extraConfig = ''
+                    charset UTF-8;
                     fastcgi_split_path_info ^(.+\.php)(/.+)$;
                     fastcgi_pass unix:${config.services.phpfpm.pools.mineweb_website.socket};
                     include ${pkgs.nginx}/conf/fastcgi_params;
