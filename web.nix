@@ -1,26 +1,5 @@
 { pkgs, lib, config, ... }: {
 
-    services.phpfpm = {
-
-        pools = let pool = poolConfig: (poolConfig // {
-            settings = {
-            "listen.owner" = config.services.nginx.user;
-            "pm" = "dynamic";
-            "pm.max_children" = 32;
-            "pm.max_requests" = 500;
-            "pm.start_servers" = 2;
-            "pm.min_spare_servers" = 2;
-            "pm.max_spare_servers" = 5;
-            "php_admin_value[error_log]" = "stderr";
-            "php_admin_flag[log_errors]" = true;
-            "catch_workers_output" = true;
-            };
-            phpEnv."PATH" = lib.makeBinPath [ pkgs.php ];
-        }); in {
-            mineweb_website = pool { user = "mineweb_website"; };
-        };
-    };
-
     services.nginx = {
         enable = true;
 
@@ -59,4 +38,26 @@
             #"code.litarvan.com" = vhost { locations."/".proxyPass = "http://localhost:7777/"; }; # Pour un VHost à partir d'un serveur local
         };
     };
+
+    services.phpfpm = {
+
+        pools = let pool = poolConfig: (poolConfig // {
+            settings = {
+            "listen.owner" = config.services.nginx.user;
+            "pm" = "dynamic";
+            "pm.max_children" = 32;
+            "pm.max_requests" = 500;
+            "pm.start_servers" = 2;
+            "pm.min_spare_servers" = 2;
+            "pm.max_spare_servers" = 5;
+            "php_admin_value[error_log]" = "stderr";
+            "php_admin_flag[log_errors]" = true;
+            "catch_workers_output" = true;
+            };
+            phpEnv."PATH" = lib.makeBinPath [ pkgs.php ];
+        }); in {
+            mineweb_website = pool { user = "mineweb_website"; };
+        };
+    };
+
 }
