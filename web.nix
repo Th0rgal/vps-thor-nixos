@@ -1,4 +1,26 @@
 { ... }: {
+
+    services.phpfpm = {
+
+        pools = let pool = poolConfig: (poolConfig // {
+            settings = {
+            "listen.owner" = config.services.nginx.user;
+            "pm" = "dynamic";
+            "pm.max_children" = 32;
+            "pm.max_requests" = 500;
+            "pm.start_servers" = 2;
+            "pm.min_spare_servers" = 2;
+            "pm.max_spare_servers" = 5;
+            "php_admin_value[error_log]" = "stderr";
+            "php_admin_flag[log_errors]" = true;
+            "catch_workers_output" = true;
+            };
+            phpEnv."PATH" = lib.makeBinPath [ pkgs.php ];
+        }); in {
+            mineweb_website = pool { app = "mineweb_website"; };
+        };
+    };
+
     services.nginx = {
         enable = true;
 
@@ -33,6 +55,7 @@
             "oraxen.com" = vhost { root = "/var/www/oraxen"; };
             "www.oraxen.com" = vhost { root = "/var/www/oraxen"; };
             "todo.oraxen.com" = vhost { root = "/var/www/oraxen/todo"; };
+            "goblinmc.fr" = vhost { root = "/var/www/goblinmc"; };
             #"code.litarvan.com" = vhost { locations."/".proxyPass = "http://localhost:7777/"; }; # Pour un VHost à partir d'un serveur local
             
         };
