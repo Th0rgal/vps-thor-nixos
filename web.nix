@@ -2,7 +2,7 @@
 
     services.phpfpm = {
 
-        pools = let pool = poolConfig: (poolConfig // {
+        pools = let pool = config: (config // {
             settings = {
             "listen.owner" = config.services.nginx.user;
             "pm" = "dynamic";
@@ -57,7 +57,6 @@
             "todo.oraxen.com" = vhost { root = "/var/www/oraxen/todo"; };
             "goblinmc.fr" = vhost { root = "/var/www/goblinmc"; };
             #"code.litarvan.com" = vhost { locations."/".proxyPass = "http://localhost:7777/"; }; # Pour un VHost à partir d'un serveur local
-            
         };
     };
 }
