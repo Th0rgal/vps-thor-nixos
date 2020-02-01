@@ -49,7 +49,7 @@
 
         pools = let pool = poolConfig: (poolConfig // {
             settings = {
-            "listen.owner" = "thomas";
+            "listen.owner" = config.services.nginx.user;
             "pm" = "dynamic";
             "pm.max_children" = 32;
             "pm.max_requests" = 500;
