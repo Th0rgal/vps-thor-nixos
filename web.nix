@@ -34,7 +34,13 @@
             "oraxen.com" = vhost { root = "/var/www/oraxen"; };
             "www.oraxen.com" = vhost { root = "/var/www/oraxen"; };
             "todo.oraxen.com" = vhost { root = "/var/www/oraxen/todo"; };
-            "goblinmc.fr" = vhost { root = "/var/www/goblinmc"; };
+            "goblinmc.fr" = vhost { root = "/var/www/goblinmc"; 
+                extraConfig = ''
+                    fastcgi_split_path_info ^(.+\.php)(/.+)$;
+                    fastcgi_pass unix:${config.services.phpfpm.pools.${app}.socket};
+                    include ${pkgs.nginx}/conf/fastcgi_params;
+                    include ${pkgs.nginx}/conf/fastcgi.conf;
+                ''; };
             #"code.litarvan.com" = vhost { locations."/".proxyPass = "http://localhost:7777/"; }; # Pour un VHost à partir d'un serveur local
         };
     };
@@ -56,7 +62,7 @@
             };
             phpEnv."PATH" = lib.makeBinPath [ pkgs.php ];
         }); in {
-            mineweb_website = pool { user = "mineweb_website"; };
+            "mineweb_website" = pool { user = "mineweb_website"; };
         };
     };
 
