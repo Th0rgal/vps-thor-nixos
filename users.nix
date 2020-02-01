@@ -9,6 +9,6 @@
         };
         mineweb_website = {
             isNormalUser = false;
-        }
+        };
     };
 }
