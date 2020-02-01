@@ -1,8 +1,8 @@
-{ lib, ... }: {
+{ pkgs, lib, config, ... }: {
 
     services.phpfpm = {
 
-        pools = let pool = config: (config // {
+        pools = let pool = poolConfig: (poolConfig // {
             settings = {
             "listen.owner" = config.services.nginx.user;
             "pm" = "dynamic";
