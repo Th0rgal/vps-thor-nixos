@@ -66,4 +66,12 @@
         };
     };
 
+  users.users.mineweb_website = {
+    isSystemUser = true;
+    createHome = true;
+    home = "/var/www/goblinmc";
+    group  = "mineweb_website";
+  };
+  users.groups.mineweb_website = {};
+
 }
