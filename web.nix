@@ -17,7 +17,7 @@
             };
             phpEnv."PATH" = lib.makeBinPath [ pkgs.php ];
         }); in {
-            mineweb_website = pool { app = "mineweb_website"; };
+            mineweb_website = pool { user = "mineweb_website"; };
         };
     };
 
