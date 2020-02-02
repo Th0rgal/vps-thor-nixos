@@ -34,35 +34,16 @@
             "oraxen.com" = vhost { root = "/var/www/oraxen"; };
             "www.oraxen.com" = vhost { root = "/var/www/oraxen"; };
             "todo.oraxen.com" = vhost { root = "/var/www/oraxen/todo"; };
-            #"goblinmc.fr" = vhost { root = "/var/www/goblinmc"; 
-            #    extraConfig = ''
-            #        charset UTF-8;
-            #        fastcgi_split_path_info ^(.+\.php)(/.+)$;
-            #        fastcgi_pass unix:${config.services.phpfpm.pools.mineweb_website.socket};
-            #        include ${pkgs.nginx}/conf/fastcgi_params;
-            #        include ${pkgs.nginx}/conf/fastcgi.conf;
-            #    ''; };
+            "goblinmc.fr" = vhost { root = "/var/www/goblinmc"; 
+                extraConfig = ''
+                    charset UTF-8;
+                    fastcgi_split_path_info ^(.+\.php)(/.+)$;
+                    fastcgi_pass unix:${config.services.phpfpm.pools.mineweb_website.socket};
+                    include ${pkgs.nginx}/conf/fastcgi_params;
+                    include ${pkgs.nginx}/conf/fastcgi.conf;
+                ''; };
             #"code.litarvan.com" = vhost { locations."/".proxyPass = "http://localhost:7777/"; }; # Pour un VHost à partir d'un serveur local
         };
-    };
-
-    services.httpd = {
-        enable = true;
-        adminAddr = "localhost";
-
-        extraModules = [ "http2" ];
-
-        virtualHosts = 
-        [
-            {
-                hostName = "localhost";
-                documentRoot = "/home/edmund/docroot";
-                enableUserDir = true;
-                servedDirs = [ { urlPath = "/"; dir = "/var/www/goblinmc"; } ];
-                serverAliases = [ "localhost" ];
-                enableSSL = false;
-            }
-        ];
     };
 
 
