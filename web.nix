@@ -46,7 +46,6 @@
         };
     };
 
-
     services.phpfpm = {
 
         pools = let pool = poolConfig: (poolConfig // {
