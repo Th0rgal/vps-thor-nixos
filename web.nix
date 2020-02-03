@@ -41,11 +41,15 @@
             "todo.oraxen.com" = vhost { root = "/var/www/oraxen/todo"; };
             "goblinmc.fr" = vhost {
             root = "/var/www/goblinmc";
-            extraConfig = ''
-                fastcgi_split_path_info ^(.+\.php)(/.+)$;
+            locations."/".index = "index.php";
+           
+            locations."~ \.php$".extraConfig = ''
+                # Ce qui commence par un # est inutile
+                # fastcgi_split_path_info ^(.+\.php)(/.+)$;
                 fastcgi_pass unix:${config.services.phpfpm.pools.mineweb_website.socket};
-                include ${pkgs.nginx}/conf/fastcgi_params;
-                include ${pkgs.nginx}/conf/fastcgi.conf;
+                fastcgi_index index.php;
+                # include ${pkgs.nginx}/conf/fastcgi_params;
+                # include ${pkgs.nginx}/conf/fastcgi.conf;
             '';
             };
             #"code.litarvan.com" = vhost { locations."/".proxyPass = "http://localhost:7777/"; }; # Pour un VHost à partir d'un serveur local
