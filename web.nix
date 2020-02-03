@@ -25,15 +25,27 @@
             http2 = true;
             enableACME = true;
             forceSSL = true;
-            extraConfig = ''
-                charset UTF-8;
-            '';
         }); in {
-            "hackedserver.info" = vhost { root = "/var/www/hackedserver"; }; # Pour un VHost à partir d'un dossier
-            "www.hackedserver.info" = vhost { root = "/var/www/hackedserver"; };
-            "oraxen.com" = vhost { root = "/var/www/oraxen"; };
-            "www.oraxen.com" = vhost { root = "/var/www/oraxen"; };
-            "todo.oraxen.com" = vhost { root = "/var/www/oraxen/todo"; };
+            "hackedserver.info" = vhost { root = "/var/www/hackedserver";
+                extraConfig = ''
+                    charset UTF-8;
+                '';}; # Pour un VHost à partir d'un dossier
+            "www.hackedserver.info" = vhost { root = "/var/www/hackedserver";
+                extraConfig = ''
+                    charset UTF-8;
+                '';};
+            "oraxen.com" = vhost { root = "/var/www/oraxen";
+                extraConfig = ''
+                    charset UTF-8;
+                '';};
+            "www.oraxen.com" = vhost { root = "/var/www/oraxen";
+                extraConfig = ''
+                    charset UTF-8;
+                '';};
+            "todo.oraxen.com" = vhost { root = "/var/www/oraxen/todo"; 
+                extraConfig = ''
+                    charset UTF-8;
+                '';};
             "goblinmc.fr" = vhost { root = "/var/www/goblinmc"; 
                 extraConfig = ''
                     charset UTF-8;
