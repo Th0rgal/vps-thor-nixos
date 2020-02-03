@@ -21,39 +21,33 @@
           ssl_stapling_verify on;
         '';
 
-        virtualHosts = let vhost = config: (config // {
+        virtualHosts = let
+        vhost = config: lib.mkMerge [
+            ({
             http2 = true;
             enableACME = true;
             forceSSL = true;
-        }); in {
-            "hackedserver.info" = vhost { root = "/var/www/hackedserver";
-                extraConfig = ''
-                    charset UTF-8;
-                '';}; # Pour un VHost à partir d'un dossier
-            "www.hackedserver.info" = vhost { root = "/var/www/hackedserver";
-                extraConfig = ''
-                    charset UTF-8;
-                '';};
-            "oraxen.com" = vhost { root = "/var/www/oraxen";
-                extraConfig = ''
-                    charset UTF-8;
-                '';};
-            "www.oraxen.com" = vhost { root = "/var/www/oraxen";
-                extraConfig = ''
-                    charset UTF-8;
-                '';};
-            "todo.oraxen.com" = vhost { root = "/var/www/oraxen/todo"; 
-                extraConfig = ''
-                    charset UTF-8;
-                '';};
-            "goblinmc.fr" = vhost { root = "/var/www/goblinmc"; 
-                extraConfig = ''
-                    charset UTF-8;
-                    fastcgi_split_path_info ^(.+\.php)(/.+)$;
-                    fastcgi_pass unix:${config.services.phpfpm.pools.mineweb_website.socket};
-                    include ${pkgs.nginx}/conf/fastcgi_params;
-                    include ${pkgs.nginx}/conf/fastcgi.conf;
-                ''; };
+            extraConfig = ''
+                charset UTF-8;
+            '';
+            })
+            config
+        ];
+        in {
+            "hackedserver.info" = vhost { root = "/var/www/hackedserver"; };
+            "www.hackedserver.info" = vhost { root = "/var/www/hackedserver"; };
+            "oraxen.com" = vhost { root = "/var/www/oraxen"; };
+            "www.oraxen.com" = vhost { root = "/var/www/oraxen"; };
+            "todo.oraxen.com" = vhost { root = "/var/www/oraxen/todo"; };
+            "goblinmc.fr" = vhost {
+            root = "/var/www/goblinmc";
+            extraConfig = ''
+                fastcgi_split_path_info ^(.+\.php)(/.+)$;
+                fastcgi_pass unix:${config.services.phpfpm.pools.mineweb_website.socket};
+                include ${pkgs.nginx}/conf/fastcgi_params;
+                include ${pkgs.nginx}/conf/fastcgi.conf;
+            '';
+            };
             #"code.litarvan.com" = vhost { locations."/".proxyPass = "http://localhost:7777/"; }; # Pour un VHost à partir d'un serveur local
         };
     };
