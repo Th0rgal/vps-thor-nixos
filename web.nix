@@ -57,7 +57,10 @@
     };
 
     services.phpfpm = {
-
+        phpOptions = ''
+            extension=${pkgs.phpPackages.redis}/lib/php/extensions/redis.so
+            extension=${pkgs.phpPackages.apcu}/lib/php/extensions/apcu.so
+        '';
         pools = let pool = poolConfig: (poolConfig // {
             settings = {
             "listen.owner" = config.services.nginx.user;
