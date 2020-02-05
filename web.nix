@@ -58,7 +58,7 @@
 
     services.phpfpm = {
         phpOptions = ''
-            extension=${pkgs.phpPackages.redis}/lib/php/extensions/redis.so
+            extension=${pkgs.phpPackages.bcmath}/lib/php/extensions/bcmath.so
             extension=${pkgs.phpPackages.apcu}/lib/php/extensions/apcu.so
         '';
         pools = let pool = poolConfig: (poolConfig // {
