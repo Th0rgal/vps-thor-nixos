@@ -20,6 +20,5 @@
   programs.fish.enable = true;
   systemd.services = {
       dear = import ./services/dear.nix { inherit pkgs; };
-      papermc = import ./services/papermc.nix { inherit pkgs; };
   }; # { inherit pkgs; } = { pkgs = pkgs }
 }
