@@ -14,7 +14,7 @@
 
   # Packages
   environment.systemPackages = with pkgs; [
-     wget git
+     wget git rtorrent
   ];
 
   programs.fish.enable = true;
