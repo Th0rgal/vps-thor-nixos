@@ -1,5 +1,7 @@
 { pkgs, lib, config, ... }: {
 
+    security.acme.email = "thomas.marchand@tuta.io";
+
     services.nginx = {
         enable = true;
 
