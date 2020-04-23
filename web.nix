@@ -39,8 +39,8 @@
         in {
             "hackedserver.info" = vhost { root = "/var/www/hackedserver"; };
             "www.hackedserver.info" = vhost { root = "/var/www/hackedserver"; };
-            "nexmind.space" = vhost { root = "/var/www/nexmind"; };
-            "www.nexmind.space" = vhost { root = "/var/www/nexmind"; };
+            #"nexmind.space" = vhost { root = "/var/www/nexmind"; };
+            #"www.nexmind.space" = vhost { root = "/var/www/nexmind"; };
             "oraxen.com" = vhost { root = "/var/www/oraxen"; };
             "www.oraxen.com" = vhost { root = "/var/www/oraxen"; };
             "todo.oraxen.com" = vhost { root = "/var/www/oraxen/todo"; };
