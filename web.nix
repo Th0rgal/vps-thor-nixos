@@ -48,10 +48,12 @@
             #"www.nexmind.space" = vhost { root = "/var/www/nexmind"; };
             "alpha.nexmind.space" = vhost {
                 locations."/" = {
-                    proxy_set_header = "Host $http_host";
-                    proxy_set_header = "X-Forwarded-For $proxy_add_x_forwarded_for";
-                    proxy_redirect = "off";
-                    proxy_buffering = "off";
+                    extraConfig = ''
+                        proxy_set_header Host $http_host;
+                        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                        proxy_redirect off;
+                        proxy_buffering off;
+                    '';
                     proxyPass = "http://aiohttp"; 
                 };
             };
