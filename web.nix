@@ -46,6 +46,7 @@
 
             #"nexmind.space" = vhost { root = "/var/www/nexmind"; };
             #"www.nexmind.space" = vhost { root = "/var/www/nexmind"; };
+            /*
             "alpha.nexmind.space" = vhost {
                 locations."/" = {
                     extraConfig = ''
@@ -56,7 +57,7 @@
                     '';
                     proxyPass = "http://aiohttp"; 
                 };
-            };
+            };*/
 
             /* EXAMPLE PHP WEBSITE
             "goblinmc.fr" = vhost {
