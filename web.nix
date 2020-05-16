@@ -46,7 +46,7 @@
 
             #"nexmind.space" = vhost { root = "/var/www/nexmind"; };
             #"www.nexmind.space" = vhost { root = "/var/www/nexmind"; };
-            /*
+
             "alpha.nexmind.space" = vhost {
                 locations."/" = {
                     extraConfig = ''
@@ -57,7 +57,7 @@
                     '';
                     proxyPass = "http://aiohttp"; 
                 };
-            };*/
+            };
 
             /* EXAMPLE PHP WEBSITE
             "goblinmc.fr" = vhost {
@@ -75,6 +75,24 @@
             */
 
         };
+        extraConfig = ''
+            http {
+            upstream aiohttp {
+                # fail_timeout=0 means we always retry an upstream even if it failed
+                # to return a good HTTP response
+
+                # Unix domain servers
+                server unix:/tmp/nexnode_process.sock fail_timeout=0;
+
+                # Unix domain sockets are used in this example due to their high performance,
+                # but TCP/IP sockets could be used instead:
+                # server 127.0.0.1:8081 fail_timeout=0;
+                # server 127.0.0.1:8082 fail_timeout=0;
+                # server 127.0.0.1:8083 fail_timeout=0;
+                # server 127.0.0.1:8084 fail_timeout=0;
+            }
+            }
+        '';
     };
 
     /*
