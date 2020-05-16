@@ -75,7 +75,7 @@
             */
 
         };
-        extraConfig = ''
+        extraConfigLines = ''
             http {
             upstream aiohttp {
                 # fail_timeout=0 means we always retry an upstream even if it failed
