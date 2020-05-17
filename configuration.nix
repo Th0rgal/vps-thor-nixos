@@ -1,9 +1,12 @@
 { pkgs, ... }: {
-  imports = [
+  require = [
     ./hardware-configuration.nix
     ./networking.nix
     ./users.nix
     ./web.nix
+
+    ./services/dear.nix
+    ./services/nexnode.nix
   ];
 
   boot = {
@@ -18,7 +21,4 @@
   ];
 
   programs.fish.enable = true;
-  systemd.services = {
-      dear = import ./services/dear.nix { inherit pkgs; };
-  }; # { inherit pkgs; } = { pkgs = pkgs }
 }
