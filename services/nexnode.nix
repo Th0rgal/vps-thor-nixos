@@ -7,7 +7,7 @@ let
     argon2_cffi
     pyjwt
   ];
-  nexmind-node-python = pkgs.python38.withPackages nexmind-node-packages;
+  nexmind-node-python = pkgs.python37.withPackages nexmind-node-packages;
 in
   {
     systemd.services.nexnode = {
