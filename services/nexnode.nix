@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs, ... }:
 let
   nexmind-node-packages = python-packages: with python-packages; [
     aiofiles

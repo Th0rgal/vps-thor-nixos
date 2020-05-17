@@ -1,4 +1,4 @@
-{ pkgs }: {
+{ pkgs, ... }: {
     systemd.services.dear = {
         description = "PROGRAMMESWAG";
         after = [ "network.target" ];
