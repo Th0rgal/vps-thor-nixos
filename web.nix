@@ -75,7 +75,7 @@
             */
 
         };
-        upstreams."aiohttp".servers."unix:/tmp/nexnode_process.sock fail_timeout=0" = {};
+        upstreams."aiohttp".servers."127.0.0.1:8080 fail_timeout=0" = {};
     };
 
     /*

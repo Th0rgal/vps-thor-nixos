@@ -17,7 +17,7 @@ in
         serviceConfig = {
             Type = "simple";
             User = "thomas";
-            ExecStart = nexmind-node-python + "/bin/python . --path=/tmp/nexnode_process.sock --port=8080";
+            ExecStart = nexmind-node-python + "/bin/python . --port=8080";
             WorkingDirectory = "/home/thomas/services/nexmind-node/nexmind-node";
             Restart = "on-failure";
         };
