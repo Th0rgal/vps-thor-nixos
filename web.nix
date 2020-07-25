@@ -37,12 +37,7 @@
             config
         ];
         in {
-            "hackedserver.info" = vhost { root = "/var/www/hackedserver"; };
-            "www.hackedserver.info" = vhost { root = "/var/www/hackedserver"; };
-
-            "oraxen.com" = vhost { root = "/var/www/oraxen"; };
-            "www.oraxen.com" = vhost { root = "/var/www/oraxen"; };
-            "todo.oraxen.com" = vhost { root = "/var/www/oraxen/todo"; };
+            "golemamc.com" = vhost { root = "/var/www/oraxen/"; };
 
             #"nexmind.space" = vhost { root = "/var/www/nexmind"; };
             #"www.nexmind.space" = vhost { root = "/var/www/nexmind"; };
