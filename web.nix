@@ -37,7 +37,7 @@
             config
         ];
         in {
-            "golemamc.com" = vhost { root = "/var/www/golemamc/"; };
+            #"golemamc.com" = vhost { root = "/var/www/golemamc/"; };
             "alpha.nexmind.space" = vhost {
                 locations."/" = {
                     extraConfig = ''
@@ -51,9 +51,8 @@
                 };
             };
 
-            /* EXAMPLE PHP WEBSITE
-            "goblinmc.fr" = vhost {
-                root = "/var/www/goblinmc";
+            "golemamc.com" = vhost {
+                root = "/var/www/golemamc";
                 locations."/".index = "index.php";
                 locations."~ \.php$".extraConfig = ''
                     # Ce qui commence par un # est inutile
@@ -64,13 +63,12 @@
                     # include ${pkgs.nginx}/conf/fastcgi.conf;
                 '';
             };
-            */
-
+            
         };
         upstreams."aiohttp".servers."127.0.0.1:8080 fail_timeout=0" = {};
     };
 
-    /*
+    
     services.phpfpm = {
         phpOptions = ''
             extension=${pkgs.phpPackages.apcu}/lib/php/extensions/apcu.so
@@ -97,7 +95,7 @@
     users.users.mineweb_website = {
         isSystemUser = true;
         createHome = true;
-        home = "/var/www/goblinmc";
+        home = "/var/www/golemamc";
         group  = "mineweb_website";
     };
     users.groups.mineweb_website = {};
