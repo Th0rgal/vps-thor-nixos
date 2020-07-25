@@ -37,11 +37,7 @@
             config
         ];
         in {
-            "golemamc.com" = vhost { root = "/var/www/oraxen/"; };
-
-            #"nexmind.space" = vhost { root = "/var/www/nexmind"; };
-            #"www.nexmind.space" = vhost { root = "/var/www/nexmind"; };
-
+            "golemamc.com" = vhost { root = "/var/www/golemamc/"; };
             "alpha.nexmind.space" = vhost {
                 locations."/" = {
                     extraConfig = ''
