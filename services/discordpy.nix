@@ -18,7 +18,7 @@ buildPythonPackage rec {
     owner = "Rapptz";
     repo = pname;
     rev = "v${version}";
-    sha256 = "c7168a1c0b8ec944ec52626b3f29607cdb4001e32eaf06ac8c4a7b72fea8bd71";
+    sha256 = "090p84x0s7lxx2a39nc5rbq3gn44a6v9x5d2998ymvxvay3j5fj1";
   };
 
   propagatedBuildInputs = [ aiohttp websockets ];
