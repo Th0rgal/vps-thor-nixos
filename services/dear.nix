@@ -6,7 +6,7 @@ let
   dear-python = pkgs.python37.withPackages dear-packages;
 in
   {
-    systemd.services.nexnode = {
+    systemd.services.dear = {
         description = "PROGRAMMESWAG";
         after = [ "network.target" ];
 
