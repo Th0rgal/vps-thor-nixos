@@ -2,6 +2,7 @@
 let
   dear-packages = python-packages: with python-packages; [
     discordpy
+    toml
   ];
   dear-python = pkgs.python37.withPackages dear-packages;
 in
