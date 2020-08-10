@@ -1,11 +1,7 @@
 { pkgs, ... }:
 let
   dear-packages = python-packages: with python-packages; [
-    aiofiles
-    aiohttp
-    aiohttp-cors
-    argon2_cffi
-    pyjwt
+    discordpy
   ];
   dear-python = pkgs.python37.withPackages dear-packages;
 in
