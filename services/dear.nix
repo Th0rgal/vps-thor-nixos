@@ -1,10 +1,10 @@
 { pkgs, ... }:
 let
   dear-packages = python-packages: with python-packages; [
-    discordpy
+    (callPackage ./discordpy.nix { })
     toml
   ];
-  dear-python = pkgs.python38.withPackages dear-packages;
+  dear-python = pkgs.python37.withPackages dear-packages;
 in
   {
     systemd.services.dear = {
