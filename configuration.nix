@@ -5,7 +5,7 @@
     ./users.nix
     ./web.nix
 
-    #./services/dear.nix
+    ./services/dear.nix
     ./services/nexnode.nix
   ];
 

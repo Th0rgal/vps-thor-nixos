@@ -1,19 +1,28 @@
-{ pkgs, ... }: {
-    systemd.services.dear = {
+{ pkgs, ... }:
+let
+  dear-packages = python-packages: with python-packages; [
+    aiofiles
+    aiohttp
+    aiohttp-cors
+    argon2_cffi
+    pyjwt
+  ];
+  dear-python = pkgs.python37.withPackages dear-packages;
+in
+  {
+    systemd.services.nexnode = {
         description = "PROGRAMMESWAG";
         after = [ "network.target" ];
 
         serviceConfig = {
             Type = "simple";
             User = "thomas";
-            ExecStart = "${pkgs.zulu8}/bin/java -jar ./dear.jar";
-            WorkingDirectory = "/home/thomas/services";
+            ExecStart = dear-python + "/bin/python dear";
+            WorkingDirectory = "/home/thomas/services/dear/";
             Restart = "on-failure";
         };
 
-        environment = {
-            JAVA_HOME = pkgs.zulu8;
-        };
+        environment.PYTHON_HOME = dear-python;
 
         wantedBy = [ "multi-user.target" ];
     };
