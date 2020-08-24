@@ -1,18 +1,26 @@
-{ pkgs }: {
-    description = "PROGRAMMESWAG";
-    after = [ "network.target" ];
+{ pkgs, ... }:
+let
+  dear-packages = python-packages: with python-packages; [
+    (callPackage ./discordpy.nix { })
+    toml
+  ];
+  dear-python = pkgs.python37.withPackages dear-packages;
+in
+  {
+    systemd.services.dear = {
+        description = "PROGRAMMESWAG";
+        after = [ "network.target" ];
 
-    serviceConfig = {
-        Type = "simple";
-        User = "thomas";
-        ExecStart = "${pkgs.zulu8}/bin/java -jar ./dear.jar";
-        WorkingDirectory = "/home/thomas/services";
-        Restart = "on-failure";
+        serviceConfig = {
+            Type = "simple";
+            User = "thomas";
+            ExecStart = dear-python + "/bin/python dear";
+            WorkingDirectory = "/home/thomas/services/dear/";
+            Restart = "on-failure";
+        };
+
+        environment.PYTHON_HOME = dear-python;
+
+        wantedBy = [ "multi-user.target" ];
     };
-
-    environment = {
-        JAVA_HOME = pkgs.zulu8;
-    };
-
-    wantedBy = [ "multi-user.target" ];
 }

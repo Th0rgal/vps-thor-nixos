@@ -37,30 +37,38 @@
             config
         ];
         in {
-            "hackedserver.info" = vhost { root = "/var/www/hackedserver"; };
-            "www.hackedserver.info" = vhost { root = "/var/www/hackedserver"; };
-            #"nexmind.space" = vhost { root = "/var/www/nexmind"; };
-            #"www.nexmind.space" = vhost { root = "/var/www/nexmind"; };
-            "oraxen.com" = vhost { root = "/var/www/oraxen"; };
-            "www.oraxen.com" = vhost { root = "/var/www/oraxen"; };
-            "todo.oraxen.com" = vhost { root = "/var/www/oraxen/todo"; };
-            "goblinmc.fr" = vhost {
-            root = "/var/www/goblinmc";
-            locations."/".index = "index.php";
-           
-            locations."~ \.php$".extraConfig = ''
-                # Ce qui commence par un # est inutile
-                # fastcgi_split_path_info ^(.+\.php)(/.+)$;
-                fastcgi_pass unix:${config.services.phpfpm.pools.mineweb_website.socket};
-                fastcgi_index index.php;
-                # include ${pkgs.nginx}/conf/fastcgi_params;
-                # include ${pkgs.nginx}/conf/fastcgi.conf;
-            '';
+            #"golemamc.com" = vhost { root = "/var/www/golemamc/"; };
+            "alpha.nexmind.space" = vhost {
+                locations."/" = {
+                    extraConfig = ''
+                        proxy_http_version 1.1;
+                        proxy_set_header Host $host;
+                        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                        proxy_redirect off;
+                        proxy_buffering off;
+                    '';
+                    proxyPass = "http://aiohttp"; 
+                };
             };
-            #"code.litarvan.com" = vhost { locations."/".proxyPass = "http://localhost:7777/"; }; # Pour un VHost à partir d'un serveur local
+
+            "golemamc.com" = vhost {
+                root = "/var/www/golemamc";
+                locations."/".index = "index.php";
+                locations."~ \.php$".extraConfig = ''
+                    # Ce qui commence par un # est inutile
+                    # fastcgi_split_path_info ^(.+\.php)(/.+)$;
+                    fastcgi_pass unix:${config.services.phpfpm.pools.mineweb_website.socket};
+                    fastcgi_index index.php;
+                    # include ${pkgs.nginx}/conf/fastcgi_params;
+                    # include ${pkgs.nginx}/conf/fastcgi.conf;
+                '';
+            };
+            
         };
+        upstreams."aiohttp".servers."127.0.0.1:8080 fail_timeout=0" = {};
     };
 
+    
     services.phpfpm = {
         phpOptions = ''
             extension=${pkgs.phpPackages.apcu}/lib/php/extensions/apcu.so
@@ -84,12 +92,12 @@
         };
     };
 
-  users.users.mineweb_website = {
-    isSystemUser = true;
-    createHome = true;
-    home = "/var/www/goblinmc";
-    group  = "mineweb_website";
-  };
-  users.groups.mineweb_website = {};
-
+    users.users.mineweb_website = {
+        isSystemUser = true;
+        createHome = true;
+        home = "/var/www/golemamc";
+        group  = "mineweb_website";
+    };
+    users.groups.mineweb_website = {};
+    
 }
