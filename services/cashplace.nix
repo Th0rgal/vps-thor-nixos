@@ -10,7 +10,7 @@ let
   cash-place-python = pkgs.python37.withPackages cash-place-packages;
 in
   {
-    systemd.services.nexnode = {
+    systemd.services.cashplace = {
         description = "PROGRAMMESWAG";
         after = [ "network.target" ];
 
