@@ -6,7 +6,6 @@ let
     aiohttp-cors
     argon2_cffi
     toml
-    bit
   ];
   cash-place-python = pkgs.python37.withPackages cash-place-packages;
 in
