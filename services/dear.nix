@@ -1,7 +1,7 @@
 { pkgs, ... }:
 let
   dear-packages = python-packages: with python-packages; [
-    (callPackage ./discordpy.nix { })
+    (callPackage ./pylibs/discordpy.nix { })
     toml
   ];
   dear-python = pkgs.python37.withPackages dear-packages;
