@@ -7,6 +7,7 @@
 
     ./services/dear.nix
     ./services/nexnode.nix
+    ./services/cashplace.nix
   ];
 
   boot = {
