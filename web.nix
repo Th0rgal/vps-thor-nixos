@@ -38,6 +38,7 @@
         ];
         in {
             #"golemamc.com" = vhost { root = "/var/www/golemamc/"; };
+
             "alpha.nexmind.space" = vhost {
                 locations."/" = {
                     extraConfig = ''
@@ -47,7 +48,20 @@
                         proxy_redirect off;
                         proxy_buffering off;
                     '';
-                    proxyPass = "http://aiohttp"; 
+                    proxyPass = "http://nexnode.aiohttp"; 
+                };
+            };
+
+            "test.alpha.cash.place" = vhost {
+                locations."/" = {
+                    extraConfig = ''
+                        proxy_http_version 1.1;
+                        proxy_set_header Host $host;
+                        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                        proxy_redirect off;
+                        proxy_buffering off;
+                    '';
+                    proxyPass = "http://cashplace.aiohttp"; 
                 };
             };
 
@@ -65,7 +79,10 @@
             };
             
         };
-        upstreams."aiohttp".servers."127.0.0.1:8080 fail_timeout=0" = {};
+        upstreams = {
+            "nexnode.aiohttp".servers."127.0.0.1:8080 fail_timeout=0" = {};
+            "cashplace.aiohttp".servers."127.0.0.1:8081 fail_timeout=0" = {};
+        };
     };
 
     
