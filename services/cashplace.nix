@@ -1,7 +1,7 @@
 { pkgs, ... }:
 let
   cash-place-packages = python-packages: with python-packages; [
-    (callPackage ./bit.nix { })
+    (callPackage ./pylibs/bit.nix { })
     aiohttp
     aiohttp-cors
     argon2_cffi
