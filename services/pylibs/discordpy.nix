@@ -10,7 +10,7 @@
 
 buildPythonPackage rec {
   pname = "discord.py";
-  version = "1.4.1";
+  version = "1.5.1";
   disabled = pythonOlder "3.5.3";
 
   # only distributes wheels on pypi now
@@ -18,7 +18,7 @@ buildPythonPackage rec {
     owner = "Rapptz";
     repo = pname;
     rev = "v${version}";
-    sha256 = "090p84x0s7lxx2a39nc5rbq3gn44a6v9x5d2998ymvxvay3j5fj1";
+    sha256 = "def00dc50cf36d21346d71bc89f0cad8f18f9a3522978dc18c7796287d47de8b";
   };
 
   propagatedBuildInputs = [ aiohttp websockets ];
