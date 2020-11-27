@@ -51,7 +51,7 @@
                     proxyPass = "http://nexnode.aiohttp"; 
                 };
             };
-
+            /*
             "test.alpha.cash.place" = vhost {
                 locations."/" = {
                     extraConfig = ''
@@ -64,6 +64,7 @@
                     proxyPass = "http://cashplace.aiohttp"; 
                 };
             };
+            */
 
             "golemamc.com" = vhost {
                 root = "/var/www/golemamc";
