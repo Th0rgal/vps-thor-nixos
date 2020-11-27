@@ -3,7 +3,7 @@
     enable = true;
     ports = [ 4387 ];
     permitRootLogin = "no";
-    passwordAuthentication = false;
+    passwordAuthentication = true;
   };
 
   networking = {
