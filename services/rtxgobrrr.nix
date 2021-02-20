@@ -5,7 +5,7 @@ let
   ]);
 in
   {
-    systemd.services.dear = {
+    systemd.services.rtxgobrrr = {
         description = "PROGRAMMESWAG";
         after = [ "network.target" ];
 
