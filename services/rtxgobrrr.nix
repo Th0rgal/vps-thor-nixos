@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  rtx-python = python3.withPackages (python-packages: with python-packages; [
+  rtx-python = pkgs.python3.withPackages (python-packages: with python-packages; [
     aiohttp telethon toml
   ]);
 in
