@@ -8,6 +8,7 @@
     ./services/dear.nix
     ./services/nexnode.nix
     ./services/cashplace.nix
+    ./services/rtxgobrrr.nix
   ];
 
   boot = {
