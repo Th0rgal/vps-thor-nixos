@@ -1,4 +1,7 @@
 { pkgs, ... }: {
+
+    nix.trustedUsers = [ "root" "thomas" ];
+
     users.users = {
         
         thomas = {
