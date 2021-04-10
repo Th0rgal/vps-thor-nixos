@@ -37,8 +37,7 @@
             config
         ];
         in {
-            #"golemamc.com" = vhost { root = "/var/www/golemamc/"; };
-
+            "projet-info-maths.sexy" = vhost { root = "/var/www/projet-info-maths-sexy/"; };
             "alpha.nexmind.space" = vhost {
                 locations."/" = {
                     extraConfig = ''
@@ -64,7 +63,6 @@
                     proxyPass = "http://cashplace.aiohttp"; 
                 };
             };
-            */
 
             "golemamc.com" = vhost {
                 root = "/var/www/golemamc";
@@ -78,7 +76,7 @@
                     # include ${pkgs.nginx}/conf/fastcgi.conf;
                 '';
             };
-            
+            */
         };
         upstreams = {
             "nexnode.aiohttp".servers."127.0.0.1:8080 fail_timeout=0" = {};
@@ -86,7 +84,7 @@
         };
     };
 
-    
+    /*
     services.phpfpm = {
         pools = let pool = poolConfig: (poolConfig // {
             settings = {
@@ -114,5 +112,6 @@
         group  = "mineweb_website";
     };
     users.groups.mineweb_website = {};
+    */
     
 }
