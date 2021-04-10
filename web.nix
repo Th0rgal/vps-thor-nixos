@@ -38,6 +38,7 @@
         ];
         in {
             "projet-info-maths.sexy" = vhost { root = "/var/www/projet-info-maths-sexy/"; };
+            /*
             "alpha.nexmind.space" = vhost {
                 locations."/" = {
                     extraConfig = ''
@@ -50,7 +51,6 @@
                     proxyPass = "http://nexnode.aiohttp"; 
                 };
             };
-            /*
             "test.alpha.cash.place" = vhost {
                 locations."/" = {
                     extraConfig = ''
