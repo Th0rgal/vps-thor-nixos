@@ -9,6 +9,7 @@
   networking = {
     hostName = "thor";
     firewall = {
+      enable = false;
       allowPing = true;
       allowedTCPPorts = [ 80 443 6000 25565 ]; # HTTP, SSL, TOR, MINECRAFT
     };
