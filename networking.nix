@@ -13,9 +13,5 @@
       allowPing = true;
       allowedTCPPorts = [ 80 443 6000 25565 ]; # HTTP, SSL, TOR, MINECRAFT
     };
-    nameservers = [
-      "9.9.9.9"
-      "149.112.112.112"
-    ];
   };
 }
