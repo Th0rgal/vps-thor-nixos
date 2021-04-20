@@ -6,9 +6,7 @@
     ./web.nix
 
     ./services/dear.nix
-    ./services/nexnode.nix
-    ./services/cashplace.nix
-    ./services/rtxgobrrr.nix
+    ./services/travelling_nimtoshi.nix
   ];
 
   boot = {
