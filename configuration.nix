@@ -6,7 +6,7 @@
     ./web.nix
 
     ./services/dear.nix
-    ./services/travelling_nimtoshi.nix
+    ./services/travelling-nimtoshi.nix
   ];
 
   boot = {
