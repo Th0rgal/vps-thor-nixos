@@ -6,7 +6,7 @@
     ./web.nix
 
     ./services/dear.nix
-    ./services/travelling-nimtoshi.nix
+    ./services/louis-a-dit.nix
   ];
 
   boot = {
