@@ -4,9 +4,6 @@
     ./networking.nix
     ./users.nix
     ./web.nix
-
-    ./services/dear.nix
-    ./services/louis-a-dit.nix
   ];
 
   boot = {
